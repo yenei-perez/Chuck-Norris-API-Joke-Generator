@@ -1,0 +1,35 @@
+import requests
+
+#Welcome the user with a message
+print("Hello ! Would you like to hear a Chuck Norris Joke?\n\n")
+
+#Display whether the user would like to continue or not
+user_rep = 'Y'
+
+#Start infinite loop here
+while True:
+
+    # user can resoing w y or 'Y'
+    if user_rep == 'Y' or user_rep == 'y':
+
+#Receive a response from the url
+        request_joke = requests.get('https://api.chucknorris.io/jokes/random')
+
+#Convert response object to JSON
+        data = request_joke.json()
+
+#Print the joke, parse JSON data to obtain value key
+        print('\n'+data["value"])
+
+#Ask the user if they want another joke
+        user_rep = input("\n\nWould you like to see another joke? (Y/N): ")
+
+    # checking user choice for exiting the program
+    elif user_rep == 'N' or user_rep == 'n':    #either will work
+
+        print("Thank you, come back again when you want another joke")
+        break
+  
+    else:
+#Print error message, if user does not answer correctly
+        user_rep = input("\n\nInvalid input. Enter (Y/N): ")
